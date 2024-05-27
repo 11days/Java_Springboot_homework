@@ -1,5 +1,7 @@
 # 基于Spring Boot的社区交流平台。包含电影，音乐和书籍的Java web应用
 
+**_导入IDEA的是mini_life，而不是整个项目_**
+
 
 Java version: 18，sdk 1.8
 
