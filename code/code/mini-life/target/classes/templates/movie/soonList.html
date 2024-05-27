@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${movie_name}">Movie</title>
+    <link href="/image/title.ico" rel="icon"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <link href="/css/movie/init.css" rel="stylesheet"/>
+    <link href="/css/movie/douban.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $(".trailer_icon").attr("target","_blank");
+            $("p",$("#showing-soon")).remove();
+        })
+    </script>
+</head>
+<body>
+<header th:include="header :: copy"></header>
+<div id="wrapper">
+    <div id="content">
+        <div class="grid-16-8 clearfix">
+            <div class="article">
+                <div class="title" th:text="${movie_name}">即将上映影讯</div>
+                <div class="bd">
+                    <div id="showing-soon" class="tab-bd" th:utext="${movieHtml}">
+                    </div>
+                </div>
+            </div>
+            <div class="aside">
+                <aside th:include="aside :: aside"></aside>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+<script src="/js/all.js"></script>
+</html>

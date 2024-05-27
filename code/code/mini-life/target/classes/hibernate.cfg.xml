@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/life</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+        <mapping class="com.wsk.life.springdata.entity.WangyialbumEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyimusicEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyisingerEntity"/>
+        <mapping class="com.wsk.life.task.entity.MytaskEntity"/>
+        <mapping class="com.wsk.life.task.entity.MytaskerrorEntity"/>
+        <mapping class="com.wsk.life.task.entity.MytasklogEntity"/>
+        <mapping class="com.wsk.life.book.entity.BookEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.UserinformationEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.AdmininformationEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.CriticReportEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.AdminactionEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyilrcEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyicontentEntity"/>
+
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

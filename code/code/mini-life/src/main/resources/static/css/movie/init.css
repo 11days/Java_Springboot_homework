@@ -1,0 +1,57 @@
+html body,html td,html th,html .pl,html input {
+    font-size: 13px
+}
+
+html .pl2 {
+    font-size: 14px
+}
+
+html h3 {
+    font-size: 15px
+}
+
+html h2 {
+    font-size: 16px
+}
+
+html h1 {
+    font-size: 26px
+}
+
+#wrapper {
+    width: 1040px
+}
+
+#db-nav-movie .nav-primary,#db-nav-movie .nav-secondary {
+    width: 1040px
+}
+
+#db-nav-movie .nav-secondary .nav-items {
+    font-size: 14px
+}
+
+.grid-16-8 .article {
+    width: 675px
+}
+
+.grid-16-8 .aside {
+    width: 300px
+}
+
+@media (max-width: 1024px) {
+    #wrapper {
+        width:1000px
+    }
+
+    body #db-nav-movie .nav-primary,body #db-nav-movie .nav-secondary {
+        width: 1000px
+    }
+
+    body #db-global-nav,body .nav {
+        min-width: 1024px
+    }
+
+    body .grid-16-8 .article {
+        padding-right: 25px
+    }
+}

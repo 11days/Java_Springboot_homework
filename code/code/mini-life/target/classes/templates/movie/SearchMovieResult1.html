@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${movie_name}">Movie</title>
+    <link href="/image/title.ico" rel="icon"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <link href="/css/movie/searchMovieResult.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <style type="text/css">
+       h1 {display:none;}
+        h2 {border-bottom: 1px solid #eee; color: #111;padding-bottom: 5px;}
+        #ghostTit {display:block; padding-bottom:15px;}
+        #location{font-size:12px; display:inline; position:relative; z-index:99; font-weight:normal;}
+        #location a{display:inline; font-weight:normal;}
+        .article .hd{margin-bottom:15px;}
+        .article h2{vertical-align:top;display:inline-block;*display:inline;zoom:1;}
+        .hd {border-bottom: 1px solid #eee; color: #111;padding-bottom: 5px;}
+        #news .hd {border-bottom: 0; padding-bottom: 0px;}
+        .hd h2{border: 0 none; margin:0;}
+        .tab-hd{display:inline-block;width:300px;*display:inline;zoom:1;height:21px;line-height:21px;vertical-align:top; margin-left: 20px;}
+        .tab-hd li{display:inline-block;*display:inline;zoom:1;margin-right:20px;cursor:pointer;}
+        .tab-hd .on{background-color:#69c;color:#fff;padding:0 10px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}
+        .tab-bd .mod{position:relative;display:inline-block;*display:inline;zoom:1;width:215px;padding:0 10px 25px 115px;border-bottom:1px dashed #ddd;margin-bottom:32px;vertical-align:top;height:154px;}
+        .tab-bd .odd {padding:0 0 25px 130px; width:150px;}
+        .tab-bd img {display:block;width:100px;}
+        .article .thumb{ position:absolute;left:0;top:0;overflow:hidden;}
+        .tab-bd .odd .thumb{left:15px;}
+        h3{background:none;margin:-4px 0 10px 0; *margin-top:0; padding:0;height:auto;}
+        .intro li{line-height:22px;color:#666;}
+        .intro li.dt {line-height:18px;}
+        .intro li.last{margin-bottom:10px;}
+        .intro .star span{color:#FF5433;padding-left:55px;}
+        .article p{background:#f5f5f5; padding:10px 15px; border-radius:2px; width:170px; margin:0;}
+        .article p a{font-size:14px;}
+        .intro .rating{line-height:12px;}
+        .search-cinemas{position:relative; }
+        #search-results{position:absolute;left:0;top:58px;display:none;width:310px;border:1px solid #e0e0e0;z-index:50;background-color:#fff;color:#A19E9B;}
+        #search-results li{line-height:24px;cursor:pointer;font-size:14px;padding:5px 0 5px 10px;}
+        #search-results li p{margin:0;font-size:12px;}
+        #search-results a{color:#A19E9B;}
+        #search-results a em{color:#333;font-weight:700;font-style:normal;}
+        #search-results a:hover{background:none;}
+        #search-results .hover{background-color:#f5f5f5;border:0 none;}
+        .search-cinemas .txt-search{border:1px solid #E0E0E0;padding:5px 2px;color:#A19E9B;color:#333;width:200px;}
+        .search-cinemas .tip{color:#A19E9B;}
+        .search-cinemas .btn-submit{border:1px solid #CBCBCB;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;color:#424242;padding:3px 5px;cursor:pointer;background:-moz-linear-gradient(top, #fafafa, #ededed);background:-webkit-linear-gradient(top, #fafafa, #ededed);background:-webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#ededed));}
+        #showing-now{display:none;}
+        #location{position:relative;margin-bottom:30px;}
+        #location-name .tit{margin-right:10px;font-size:14px;font-weight:700;color:#111;}
+        #location-name  a{margin:0 2px;}
+        #location-name .icon{background:url("//img3.doubanio.com/pics/movie_subject_arrow.png") no-repeat center center;padding:0 6px;}
+        .trailer_icon:link,
+        .trailer_icon:visited,
+        .trailer_icon:hover,
+        .trailer_icon:active {_display:block; _width:40px; color:#369; padding:5px 22px 5px 0; background:url(//img3.doubanio.com/pics/movie_trailer_icon3.png) right 2px no-repeat;}
+        .toggleCities{top:25px; *top:35px; left:-25px;}
+         #cities-list {left: -23px;}
+        .tab-hd .on{background-color:#649FC8;}
+       ul, ol {
+           list-style: none;
+       }
+       ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+       }
+    </style>
+</head>
+<body>
+<header th:include="header :: copy"></header>
+<div  id="wrapper" class="all_content">
+    <main>
+        <div id="showing-soon" class="tab-bd" th:utext="${movieHtml}">
+            ${movieHtml}
+        </div>
+        <div th:with="movie=${movie}">
+            <div class="search_movie_result" th:each="o:${movie.getSubjects()}">
+                <div class="search_movie_result_img">
+                    <a th:href="'/search/movie/information?id='+${o.getId()}">
+                        <img src="/image/1.jpg" th:src="${o.getImages().get('medium').replaceFirst('http:','').replaceFirst('https:','')}" th:alt="${o.getTitle()}"/>
+                    </a>
+                </div>
+                <div class="search_movie_result_information">
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">电影名</span>:
+                        <span class="search_movie_result_information_name_2">
+                            <a th:href="'/search/movie/information?id='+${o.getId()}" th:text="${o.getTitle()}">来自WSK的爱</a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">外语名</span>:
+                        <span class="search_movie_result_information_name_2">
+                            <a th:href="'/search/movie/information?id='+${o.getId()}" th:text="${o.getOriginal_title()}">来自WSK的爱</a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_director_1">导演</span>:
+                        <span class="search_movie_result_information_director_2" th:each="director:${o.getDirectors()}">
+                            <a th:text="${director.getName()}" th:href="'/celebrity/'+${o.getId()}">
+                                SK.W
+                            </a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_cast_1">主演</span>:
+                        <span class="search_movie_result_information_cast_2" th:each="cast:${o.getCasts()}">
+                            <a th:text="${cast.getName()}+' / '" th:href="'/celebrity/'+${o.getId()}">
+                                SK.W
+                            </a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">类型</span>:
+                        <span class="search_movie_result_information_name_2" th:each="gen:${o.getGenres()}">
+                            <span th:text="${gen}+' / '">
+                                SK.W
+                            </span>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">编属</span>:
+                        <span th:switch="${o.getSubtype()}">
+                        <span class="search_movie_result_information_name_2"
+                              th:case="'movie'">电影</span>
+                        <span class="search_movie_result_information_name_2"
+                              th:case="'tv'">电视剧</span>
+                         <span class="search_movie_result_information_name_2"
+                               th:case="'*'" th:text="${o.getSubtype()}">电视剧</span>
+                            </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">年份</span>:
+                        <span class="search_movie_result_information_name_2" th:text="${o.getYear()}">2017</span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">评分</span>:
+                        <span class="search_movie_result_information_name_2"
+                              th:text="${o.getRating().getAverage()}">9.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+<script src="/js/all.js"></script>
+</html>
